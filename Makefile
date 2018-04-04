@@ -33,7 +33,7 @@ do-build:
 	cd ${WRKSRC} ; ${LOCALBASE}/share/java/maven33/bin/mvn clean install -Dmaven.repo.local=${WRKDIR}/repository --offline
 
 do-install:
-	${INSTALL_PROGRAM} ${STAGEDIR}${DATADIR}/ohc-core/target/ohc-core-${PORTVERSION}.jar ${JAVAJARDIR}/
-	${INSTALL_PROGRAM} ${STAGEDIR}${DATADIR}/ohc-core-j8/target/ohc-core-j8-${PORTVERSION}.jar ${JAVAJARDIR}/
+	${INSTALL_DATA} ${WRKSRC}/ohc-core/target/ohc-core-${PORTVERSION}.jar ${STAGEDIR}${JAVAJARDIR}/ohc-core.jar
+	${INSTALL_DATA} ${WRKSRC}/ohc-core-j8/target/ohc-core-j8-${PORTVERSION}.jar ${STAGEDIR}${JAVAJARDIR}/ohc-core-j8.jar
 
 .include <bsd.port.mk>
