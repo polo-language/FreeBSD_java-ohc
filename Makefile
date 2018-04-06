@@ -3,7 +3,8 @@
 PORTNAME=	ohc
 PORTVERSION=	0.4.4
 CATEGORIES=	java devel
-#MASTER_SITES=
+MASTER_SITES=	LOCAL:maven
+DISTFILES+=	${PORTNAME}-${PORTVERSION}-maven-repository.tar.gz:maven
 
 MAINTAINER=	language.devel@gmail.com
 COMMENT=	Off-heap-cache for Java
@@ -21,7 +22,6 @@ JAVA_VERSION=	1.8
 JAVA_VENDOR=	openjdk
 USE_JAVA=	yes
 REINPLACE_ARGS=	-i ''
-#SUB_LIST=	JAVAJARDIR=${JAVAJARDIR} # export snappy version for mvn build.xml?
 
 post-patch:
 	SNAPPY_VERSION=$$( ${PKG_QUERY} '%v' snappyjava ) ; \
