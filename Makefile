@@ -11,8 +11,10 @@ COMMENT=	Off-heap-cache for Java
 
 LICENSE=	APACHE20
 
-BUILD_DEPENDS=	snappyjava>0:archivers/snappy-java \
+P_B_DEPENDS=	snappyjava>0:archivers/snappy-java \
 		${LOCALBASE}/share/java/maven33/bin/mvn:devel/maven33
+PATCH_DEPENDS=	${P_B_DEPENDS}
+BUILD_DEPENDS=	${P_B_DEPENDS}
 RUN_DEPENDS=	snappyjava>0:archivers/snappy-java
 
 OPTIONS_DEFINE=	TESTS
