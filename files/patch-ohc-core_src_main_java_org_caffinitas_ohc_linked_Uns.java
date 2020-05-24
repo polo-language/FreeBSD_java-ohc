@@ -1,6 +1,6 @@
---- ohc-core/src/main/java/org/caffinitas/ohc/linked/Uns.java.orig	2016-04-12 19:48:04 UTC
+--- ohc-core/src/main/java/org/caffinitas/ohc/linked/Uns.java.orig	2016-08-27 18:00:44 UTC
 +++ ohc-core/src/main/java/org/caffinitas/ohc/linked/Uns.java
-@@ -233,49 +233,49 @@ final class Uns
+@@ -236,49 +236,49 @@ final class Uns
      static void putLong(long address, long offset, long value)
      {
          validate(address, offset, 8L);

@@ -1,5 +1,5 @@
-TIMESTAMP = 1523051538
-SHA256 (ohc-0.4.4-maven-repository.tar.gz) = 5f821a92c14c02f07511941b5e57afd5a0f6ff3369cee0e6236a9d6d988a6402
-SIZE (ohc-0.4.4-maven-repository.tar.gz) = 56596902
-SHA256 (snazy-ohc-0.4.4_GH0.tar.gz) = 9da469b8e533b21666e3b8f09fde722baa0464bffa5984cb8f39720beaeeaa34
-SIZE (snazy-ohc-0.4.4_GH0.tar.gz) = 128537
+TIMESTAMP = 1590310473
+SHA256 (ohc-0.5.1-maven-repository.tar.gz) = df2c67257a1088d35c6dcbd1e83cf6e1507b1998d8077616ac79b3be08b22320
+SIZE (ohc-0.5.1-maven-repository.tar.gz) = 28720870
+SHA256 (snazy-ohc-0.5.1_GH0.tar.gz) = 886d34f2682123071cfbf1831ae187b76fac1f6b56a19e18ee252f0bc5694812
+SIZE (snazy-ohc-0.5.1_GH0.tar.gz) = 124114
