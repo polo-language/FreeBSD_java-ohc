@@ -1,0 +1,60 @@
+--- pom.xml.orig	2018-08-19 14:34:29 UTC
++++ pom.xml
+@@ -86,8 +86,8 @@
+         <version.org.apache.maven.plugins.maven-site-plugin>3.7.1</version.org.apache.maven.plugins.maven-site-plugin>
+         <version.org.apache.maven.plugins.maven-shade-plugin>3.1.1</version.org.apache.maven.plugins.maven-shade-plugin>
+         <version.org.apache.maven.plugins.maven-source-plugin>3.0.1</version.org.apache.maven.plugins.maven-source-plugin>
+-        <version.org.apache.maven.plugins.maven-surefire-plugin>2.22.0</version.org.apache.maven.plugins.maven-surefire-plugin>
+-        <version.org.apache.maven.plugins.maven-surefire-report-plugin>2.22.0</version.org.apache.maven.plugins.maven-surefire-report-plugin>
++        <version.org.apache.maven.plugins.maven-surefire-plugin>3.0.0-M4</version.org.apache.maven.plugins.maven-surefire-plugin>
++        <version.org.apache.maven.plugins.maven-surefire-report-plugin>3.0.0-M4</version.org.apache.maven.plugins.maven-surefire-report-plugin>
+         <version.org.apache.logging.log4j>2.11.1</version.org.apache.logging.log4j>
+         <version.org.codehaus.mojo.cobertura-maven-plugin>2.7</version.org.codehaus.mojo.cobertura-maven-plugin>
+         <version.org.codehaus.mojo.exec-maven-plugin>1.6.0</version.org.codehaus.mojo.exec-maven-plugin>
+@@ -222,6 +222,7 @@
+                         <show>protected</show>
+                         <includeDependencySources>false</includeDependencySources>
+                         <includeTransitiveDependencySources>false</includeTransitiveDependencySources>
++                        <source>8</source>
+                     </configuration>
+                     <executions>
+                         <execution>
+@@ -315,6 +316,7 @@
+                     <failOnError>false</failOnError>
+                     <includeDependencySources>true</includeDependencySources>
+                     <includeTransitiveDependencySources>false</includeTransitiveDependencySources>
++                    <source>8</source>
+                 </configuration>
+                 <reportSets>
+                     <reportSet>
+@@ -334,10 +336,6 @@
+             <activation>
+                 <jdk>11</jdk>
+             </activation>
+-            <properties>
+-                <surefire.jvmargs>--add-exports java.base/sun.nio.ch=ALL-UNNAMED</surefire.jvmargs>
+-                <javadoc.args>--add-exports java.base/sun.nio.ch=ALL-UNNAMED</javadoc.args>
+-            </properties>
+         </profile>
+ 
+         <profile>
+@@ -347,6 +345,9 @@
+                     <plugin>
+                         <groupId>org.apache.maven.plugins</groupId>
+                         <artifactId>maven-javadoc-plugin</artifactId>
++                        <configuration>
++                            <source>8</source>
++                        </configuration>
+                     </plugin>
+                 </plugins>
+             </build>
+@@ -359,6 +360,9 @@
+                     <plugin>
+                         <groupId>org.apache.maven.plugins</groupId>
+                         <artifactId>maven-javadoc-plugin</artifactId>
++                        <configuration>
++                            <source>8</source>
++                        </configuration>
+                     </plugin>
+ 
+                     <plugin>

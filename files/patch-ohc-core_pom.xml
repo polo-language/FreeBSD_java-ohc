@@ -1,0 +1,19 @@
+--- ohc-core/pom.xml.orig	2018-08-19 14:34:29 UTC
++++ ohc-core/pom.xml
+@@ -287,6 +287,7 @@
+                         <configuration>
+                             <additionalOptions>${javadoc.args}</additionalOptions>
+                             <doclint>all,-html</doclint>
++                            <source>8</source>
+                         </configuration>
+                     </plugin>
+                     <plugin>
+@@ -344,7 +345,7 @@
+                                     <goal>test</goal>
+                                 </goals>
+                                 <configuration>
+-                                    <classesDirectory>target/notexists</classesDirectory>
++                                    <classesDirectory>target/classes</classesDirectory>
+                                     <additionalClasspathElements>
+                                         <element>target/ohc-core-${project.version}.jar</element>
+                                     </additionalClasspathElements>

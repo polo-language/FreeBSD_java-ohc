@@ -23,10 +23,9 @@ TESTS_DESC=	Compile and run tests and benchmarking
 USE_GITHUB=	yes
 GH_ACCOUNT=	snazy
 
-JAVA_VERSION=	8
+JAVA_VERSION=	8 11
 JAVA_VENDOR=	openjdk
 USE_JAVA=	yes
-REINPLACE_ARGS=	-i ''
 
 PLIST_FILES=	${JAVAJARDIR}/ohc-core.jar
 
@@ -41,17 +40,17 @@ NOTESTS_FLAG=	-Dmaven.test.skip=true
 SNAPPY_VERSION=`${PKG_QUERY} '%v' snappyjava`
 
 post-patch:
-	SNAPPY_VERSION=$$( ${PKG_QUERY} '%v' snappyjava ) ; \
-		cd ${WRKSRC} ; \
+	SNAPPY_VERSION=$$( ${PKG_QUERY} '%v' snappyjava ) ; cd ${WRKSRC} ; \
 		${REINPLACE_CMD} "s|version.org.xerial.snappy>[0-9].[0-9].[0-9].[0-9]<|version.org.xerial.snappy>$$SNAPPY_VERSION<|" pom.xml ; \
-		${LOCALBASE}/share/java/maven33/bin/mvn install:install-file -Dfile=${JAVAJARDIR}/snappy-java.jar -DgroupId=org.xerial.snappy -DartifactId=snappy-java -Dversion=$$SNAPPY_VERSION -Dpackaging=jar -Dmaven.repo.local=${WRKDIR}/repository --offline
+		${LOCALBASE}/share/java/maven33/bin/mvn install:install-file -Dfile=${JAVAJARDIR}/snappy-java.jar \
+			-DgroupId=org.xerial.snappy -DartifactId=snappy-java -Dversion=$$SNAPPY_VERSION -Dpackaging=jar -Dmaven.repo.local=${WRKDIR}/repository #--offline
 
 post-patch-TESTS-off:
-	${REINPLACE_CMD} "s|<module>ohc-benchmark</module>|<!--module>ohc-benchmark</module-->|" ${WRKSRC}/pom.xml
-	${REINPLACE_CMD} "s|<module>ohc-jmh</module>|<!--module>ohc-jmh</module-->|" ${WRKSRC}/pom.xml
+	${REINPLACE_CMD} -e 's|<module>ohc-benchmark</module>|<!--module>ohc-benchmark</module-->|' \
+			-e 's|<module>ohc-jmh</module>|<!--module>ohc-jmh</module-->|' ${WRKSRC}/pom.xml
 
 do-build:
-	cd ${WRKSRC} ; ${LOCALBASE}/share/java/maven33/bin/mvn clean install -Dmaven.repo.local=${WRKDIR}/repository --offline ${NOTESTS_FLAG}
+	cd ${WRKSRC} ; ${LOCALBASE}/share/java/maven33/bin/mvn clean install -Dmaven.repo.local=${WRKDIR}/repository ${NOTESTS_FLAG} -e -X #--offline
 
 do-install:
 	${INSTALL_DATA} ${WRKSRC}/ohc-core/target/ohc-core-${PORTVERSION}.jar ${STAGEDIR}${JAVAJARDIR}/ohc-core.jar
