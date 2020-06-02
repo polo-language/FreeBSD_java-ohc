@@ -43,14 +43,14 @@ post-patch:
 	SNAPPY_VERSION=$$( ${PKG_QUERY} '%v' snappyjava ) ; cd ${WRKSRC} ; \
 		${REINPLACE_CMD} "s|version.org.xerial.snappy>[0-9].[0-9].[0-9].[0-9]<|version.org.xerial.snappy>$$SNAPPY_VERSION<|" pom.xml ; \
 		${LOCALBASE}/share/java/maven33/bin/mvn install:install-file -Dfile=${JAVAJARDIR}/snappy-java.jar \
-			-DgroupId=org.xerial.snappy -DartifactId=snappy-java -Dversion=$$SNAPPY_VERSION -Dpackaging=jar -Dmaven.repo.local=${WRKDIR}/repository #--offline
+			-DgroupId=org.xerial.snappy -DartifactId=snappy-java -Dversion=$$SNAPPY_VERSION -Dpackaging=jar -Dmaven.repo.local=${WRKDIR}/repository --offline
 
 post-patch-TESTS-off:
 	${REINPLACE_CMD} -e 's|<module>ohc-benchmark</module>|<!--module>ohc-benchmark</module-->|' \
 			-e 's|<module>ohc-jmh</module>|<!--module>ohc-jmh</module-->|' ${WRKSRC}/pom.xml
 
 do-build:
-	cd ${WRKSRC} ; ${LOCALBASE}/share/java/maven33/bin/mvn clean install -Dmaven.repo.local=${WRKDIR}/repository ${NOTESTS_FLAG} -e -X #--offline
+	cd ${WRKSRC} ; ${LOCALBASE}/share/java/maven33/bin/mvn clean install -Dmaven.repo.local=${WRKDIR}/repository ${NOTESTS_FLAG} --offline
 
 do-install:
 	${INSTALL_DATA} ${WRKSRC}/ohc-core/target/ohc-core-${PORTVERSION}.jar ${STAGEDIR}${JAVAJARDIR}/ohc-core.jar
